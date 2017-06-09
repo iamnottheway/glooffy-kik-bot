@@ -11,7 +11,7 @@ key = ''
 app = Flask(__name__)
 kik = KikApi(usr_name, key)
 
-kik.set_configuration(Configuration(webhook='http://336b64d9.ngrok.io'))
+kik.set_configuration(Configuration(webhook=''))
 
 def SendMessage(user,ch_id,msg):
 	# sends a single message 
