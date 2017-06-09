@@ -5,8 +5,8 @@ from kik import KikApi, Configuration
 from kik.messages import messages_from_json,TextMessage
 
 
-usr_name = 'spencethepetbot'
-key = '3866b0c5-7ac3-49a2-9f29-ed3b27fbd5b1'
+usr_name = ''
+key = ''
 
 app = Flask(__name__)
 kik = KikApi(usr_name, key)
