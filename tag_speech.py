@@ -51,34 +51,37 @@ class SpeechTagger():
 		self.tag_string	= self.validate_input(tag_string)
 		# tagged string contains string and tag
 		self.tagged_string = [[None,None]]
+		self.test_string_tag = "None"
 		self.tag_validators = [
 							"#current_weather","#current_temperature",
 							"#current_time","current_location",
 							"#greetings","#goodbyes",
 							"#other_stuff","#what_you_sayin_bro"
 						]
-		if "weather" in self.tag_string:
+		if "weather" or "weather in" in self.tag_string:
 			self.tagged_string[0][0] = self.init_str
 			self.tagged_string[0][1] = self.tag_validators[0] # tag with weather
+			self.test_string_tag = "{0}".format(self.tagged_string[0][1])
 		elif "hot" or "cold" or "freezing" or "melting" or "temperature" in self.tag_string:
 			self.tagged_string[0][0] = self.init_str
 			self.tagged_string[0][1] = self.tag_validators[1] # tag with weather
+			self.test_string_tag = "{0}".format(self.tagged_string[0][1])
 		else:
 			self.tagged_string[0][0] = self.init_str
 			self.tagged_string[0][1] = self.tag_validators[-2] # tag with other_stuff
-		return self.tagged_string
+			self.test_string_tag = "{0}".format(self.tagged_string[0][1])
+		return self.test_string_tag
 
 
 
-sp = SpeechTagger()
-test_list = [
-			"what is the weather in London","is it hot in london",
-			"is it cold in london","is it freezing in the arctic",
-			"is it melting in africa","blah",
-			"i want a dog","weather in london"
-]
-
-for t_str in  test_list:
+if __name__ == '__main__':
+	test_list = [
+				"what is the weather in London","is it hot in london",
+				"is it cold in london","is it freezing in the arctic",
+				"is it melting in africa","blah",
+				"i want a dog","weather in london"
+	]
+	sp = SpeechTagger()
 	y = sp.look_and_tag(t_str)
 	print(y)
 

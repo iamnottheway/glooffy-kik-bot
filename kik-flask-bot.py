@@ -3,15 +3,19 @@ import random
 from flask import Flask, request, Response
 from kik import KikApi, Configuration
 from kik.messages import messages_from_json,TextMessage
+from tag_speech import SpeechTagger
+
+# import responses
+from responses import UsrgreetingList,messageList,help_str
 
 
-usr_name = ''
-key = ''
+usr_name = 'spencethepetbot'
+key = '3866b0c5-7ac3-49a2-9f29-ed3b27fbd5b1'
 
 app = Flask(__name__)
 kik = KikApi(usr_name, key)
 
-kik.set_configuration(Configuration(webhook=''))
+kik.set_configuration(Configuration(webhook='http://c0a2c220.ngrok.io'))
 
 def SendMessage(user,ch_id,msg):
 	# sends a single message 
@@ -31,29 +35,14 @@ def incoming():
     # store the user info
 	c_user = kik.get_user(user_name)
     # user messages
-	UsrgreetingList = ["hi","hey","sup","yo","wassup","hello"]
-	for greet in UsrgreetingList:
-		if current_msg == greet:
-			messageList = ["Hello, what's up? {}🌊!".format(c_user.first_name),\
-			"Yo, woof woof {}🌻!".format(c_user.first_name),\
-			"🐶🌻🌴🌊 woooofff wooofff!!",\
-			"hey {}".format(c_user.first_name),\
-			"welcome back!"]
-			SendMessage(user_name,chatting_id,messageList[random.randint(0,len(messageList)-1)])
-		elif current_msg == 'help':
-			help_str = """
-			I can...🐶\n
-			1) Show you all the pet stores in your city or anywhere in the world🌎\n
-			2) name your pet for you🎂\n
-			3) play a game with you🎲\n
-			4) Inspire you
-			"""
-			SendMessage(user_name,chatting_id,help_str)
-			break
-		else:
-			# just send one message
-			SendMessage(user_name,chatting_id,"Yo, i'm a dog. My speech is limited. Type 'help' 🐶")
-			break
+	if current_msg in UsrgreetingList:
+		SendMessage(user_name,chatting_id,messageList[random.randint(0,len(messageList)-1)])
+	elif current_msg == "help":
+		SendMessage(user_name,chatting_id,help_str)
+	else:
+		tag_speech = SpeechTagger()
+		chat_response = tag_speech.look_and_tag(current_msg)
+		SendMessage(user_name,chatting_id,chat_response)
 	return Response(status=200)
     
 
