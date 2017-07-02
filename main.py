@@ -9,10 +9,10 @@ from responses import UsrgreetingList,messageList,help_str
 
 from wit import Wit
 
-bot = Wit(access_token="VOCFYQI6MHUL7CDRMPURE4Z26KJGNL7G")
+bot = Wit(access_token="access-code")
 
-usr_name = 'spencethepetbot'
-key = '3866b0c5-7ac3-49a2-9f29-ed3b27fbd5b1'
+usr_name = 'kik-bot-name'
+key = 'key'
 
 app = Flask(__name__)
 kik = KikApi(usr_name, key)
