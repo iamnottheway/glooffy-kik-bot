@@ -1,3 +1,8 @@
-# kik-bot that tells you the weather
+# Glooffy is a weather bot for kik.
+Glooffy uses wit.ai to understand what the user means. 
 
-![Alt Text](https://github.com/HarowitzBlack/Color-password-encryptor/blob/master/color-password-encrypter/out.gif)
+# still in development
+
+@glooffybot on kik
+
+![Alt Text](https://github.com/HarowitzBlack/glooffy-kik-bot/blob/master/botpage.png)
