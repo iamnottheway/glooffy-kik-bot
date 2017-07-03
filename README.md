@@ -7,4 +7,4 @@ Glooffy uses wit.ai to understand what the user means.
 
 ![Alt Text](https://github.com/HarowitzBlack/glooffy-kik-bot/blob/master/botpage.png)
 
-https://glooffy.herokuapp.com/
+<button>https://glooffy.herokuapp.com/</button>
